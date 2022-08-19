@@ -7,7 +7,14 @@ using namespace std;
 void segWord(ofstream& fp, const string line){
     int next = 0;
     for(int i = 0; i<line.length(); i += next){
-    // while (i < line.size()){
+    // 考虑 写循环是否会 写这样的 结果会是什么情况： 
+    /*for(int i = 0; i<line.size(); i++){
+
+    }*/
+    // 也可以这样写 
+    /*while (i < line.size()){
+
+    }*/
         if((line[i] & 0x80) == 0x00){
             next = 1;
         }
