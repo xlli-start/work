@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/xli/work/c++/分字'
+make: Leaving directory `/Users/xli/work/c++/分字'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+
