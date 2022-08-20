@@ -1,12 +1,14 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <assert.h>
 
 using namespace std;
 
-void segWord(ofstream& fp, const string line){
+void segWord(ofstream& fp, int readline, const string line){
     int next = 0;
-    for(int i = 0; i<line.length(); i += next){
+    int i = (readline > 1) ? 0 : 3;
+    for(; i<line.length(); i += next){
     // 考虑 写循环是否会 写这样的 结果会是什么情况： 
     /*for(int i = 0; i<line.size(); i++){
 
@@ -15,6 +17,14 @@ void segWord(ofstream& fp, const string line){
     /*while (i < line.size()){
 
     }*/
+        /*
+            仿BOM的文件头写入 0xEF 0xBB 0xBF(写入顺序从左到右)
+        */
+        /*         
+            if(((line[0] & 0xF0) == 0xE0) && ((line[1] & 0xFE) == 0xBA) && ((line[2] & 0xFC) == 0xBC)){
+                i += 3;
+            } 
+        */
         if((line[i] & 0x80) == 0x00){
             next = 1;
         }
@@ -30,8 +40,11 @@ void segWord(ofstream& fp, const string line){
         else if((line[i] & 0xFC) == 0xF8){
             next = 5;
         }
-        string word = line.substr(i, next);
-        fp << word << " ";
+        else{
+            continue; // 没有cntinue会在首行加上空格
+        }
+        string word = ((i + next + 1) < line.length()) ? (line.substr(i, next) + " ") : line.substr(i, next);
+        fp << word;
     }
     fp << endl;
 }
@@ -41,10 +54,12 @@ int main(){
     if(!read){
         return 0;
     }
-    ofstream write("segSentence.txt");
-    string line{};
+    ofstream write("c++segSentence.txt");
+    string line;
+    int readline = 0;
     while(getline(read, line)){
-        segWord(write, line);
+        readline += 1;
+        segWord(write, readline, line);
         // break;
     }
     return 0;
