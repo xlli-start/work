@@ -50,11 +50,11 @@ void segWord(ofstream& fp, int readline, const string line){
 }
 
 int main(){
-    ifstream read("Sentence.txt");
+    ifstream read("../origin/Sentence.txt");
     if(!read){
         return 0;
     }
-    ofstream write("c++segSentence.txt");
+    ofstream write("../result/c++segSentence.txt");
     string line;
     int readline = 0;
     while(getline(read, line)){

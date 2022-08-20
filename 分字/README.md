@@ -1,3 +1,8 @@
+# 分字程序：
+ - main.py : 使用脚本分字，粗略按行比对c++分字结果和python的是否一致
+   - 执行方式：./main.py
+ - main.cpp : 使用c++位操作分字
+   - 执行方式：g++ ./main.cpp --std=c++11
 # utf8 编码规则：
 ```
 1字节 0xxxxxxx   
