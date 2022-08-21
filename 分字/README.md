@@ -1,8 +1,10 @@
 # 分字程序：
  - main.py : 使用脚本分字，粗略按行比对c++分字结果和python的是否一致
-   - 执行方式：./main.py
+   - 执行方式：
+   - ./main.py --input ../origin/Sentence.txt --pyoutput ../result/pySentence.txt --coutput ../result/c++segSentence.txt 
  - main.cpp : 使用c++位操作分字
-   - 执行方式：g++ ./main.cpp --std=c++11
+   - 执行方式:
+   - g++ -std=c++11 ./main.cpp ../origin/Sentence.txt  ../result/c++segSentence.txt
 # utf8 编码规则：
 ```
 1字节 0xxxxxxx   
