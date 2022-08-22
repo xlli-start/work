@@ -11,7 +11,7 @@ using namespace std;
 int main(int argc, char* argv[])
 {
     // 时间字符串转格式化时间
-    string begin = "20:00:00";
+    string begin = "01:00:00";
     tm m ={};
     istringstream ss(begin);
     ss >> get_time(&m, "%H:%M:%S");
